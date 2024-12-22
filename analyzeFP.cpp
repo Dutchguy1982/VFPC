@@ -144,7 +144,6 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		sid_suffix = sid.substr(sid.find_first_of("0123456789"), sid.length());
 		boost::to_upper(sid_suffix);
 	}
-	string first_airway;
 
 	// Did not find a valid SID
 	if (sid_suffix.length() == 0 && "VCT" != first_wp) {
@@ -153,10 +152,16 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		return returnValid;
 	}
 
+	string first_airway;
+
 	vector<string>::iterator it = find(route.begin(), route.end(), first_wp);
 	if (it != route.end() && (it - route.begin()) != route.size() - 1) {
 		first_airway = route[(it - route.begin()) + 1];
 		boost::to_upper(first_airway);
+		if (first_airway == "DCT") {
+			returnValid["SEARCH"] = "Flightplan contains a DCT after the SID!";
+			returnValid["STATUS"] = "Failed";
+		}
 	}
 
 	// Airport defined
@@ -218,6 +223,10 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 			if (routeContains(rte, conditions[i]["airways"])) {
 				returnValid["AIRWAYS"] = "Passed Airways";
 				passed[1] = true;
+			}
+			if (first_airway == "DCT") {
+				returnValid["AIRWAYS"] = "Failed Airways";
+				passed[1] = false;
 			}
 			else {
 				continue;
