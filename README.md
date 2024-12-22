@@ -1,3 +1,12 @@
+# Difference from original
+
+There is one minor change compared to the original VFPC plugin, this change is the addition of checking whether the first airway present in the Flightplan is a DCT. If this is the case, VFPC will show an error.  
+The expanded output (in chat) will show:
+
+![DCT After the SID](https://i.imgur.com/SG1gbVC.png)
+
+Also the sids have been updated to the EHAA values, credit to [MikaNL](https://github.com/MikaNL/VFPC) for adding these.
+
 # VFPC Plugin
  
 VFPC (Vatsim Flugplan-RFL checker) is a plugin for EuroScope that checks defined departure restrictions on filed flight plans. It adds a Tag Item type for the Departure List, which displays the result of the check.

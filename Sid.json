@@ -1,1094 +1,1192 @@
 [
    {
-      "icao": "EDDH",
+      "icao": "EHAM",
       "sids": {
          "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "AMLUH": [
-            {
-               "direction": "ODD",
-               "max_fl": 290,
-               "forbidden_fls": ["240"],
-               "destinations": [
-                  "EDDF",
-                  "EDFH"
-               ]
-            },
-            {
-               "direction": "ODD",
-               "min_fl": 0,
-               "max_fl": 0,
-               "destinations": [
-                  "ED"
-               ],
-               "airways": [],
-               "engine": []
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "BASUM": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "ELSOB": [
-            {
-               "direction": "EVEN",
-               "airways": [
-                  "L619",
-                  "P992"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "EKERN": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "HAM": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "IDEKO": [
-            {
-               "direction": "EVEN",
-               "destinations": [
-                  "EDDK",
-                  "EDDL",
-                  "EDDG",
-                  "EDLW",
-                  "EDLN",
-                  "EDLP",
-                  "EDGS",
-                  "EDLV"
-               ]
-            },
-            {
-               "direction": "ODD",
-               "max_fl": 230,
-               "destinations": [
-                  "EDDF",
-                  "EDFH"
-               ]
-            },
-            {
-               "direction": "EVEN",
-               "max_fl": 100,
-               "destinations": [
-                  "EDDV"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "LBV": [
-            {
-               "direction": "EVEN",
-               "airways": [
-                  "L619",
-                  "P992"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "LUB": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "LUGEG": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "RAMAR": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "WSN": [
-            {
-               "direction": "EVEN",
-               "max_fl": 100,
-               "destinations": [
-                  "EDDW"
-               ]
-            },
-            {
-               "direction": "EVEN"
-            }
-         ]
-      }
-   },
-   {
-      "icao": "EDDW",
-      "sids": {
-         "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "BASUM": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "EEL": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "ERLAD": [
-            {
-               "direction": "EVEN",
-               "destinations": [
-                  "EDDK",
-                  "EDDL",
-                  "EDDG",
-                  "EDLW",
-                  "EDLN",
-                  "EDLP",
-                  "EDGS",
-                  "EDLV"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "GESTO": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "NIE": [
-            {
-               "direction": "ODD",
-               "max_fl": 90,
-               "destinations": [
-                  "EDDV",
-                  "EDVE"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "WSN": [
-            {
-               "direction": "ODD",
-               "max_fl": 90,
-               "destinations": [
-                  "EDDH"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ]
-      }
-   },
-   {
-      "icao": "EDDV",
-      "sids": {
-         "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "CEL": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "MULDO": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "NIE": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "POVEL": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "TOLTA": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "VAXEV": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "WERRA": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "WRB": [
-            {
-               "direction": "EVEN",
-               "airways": [
-                  "T858",
-                  "P12"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ]
-      }
-   },
-   {
-      "icao": "EDDT",
-      "sids": {
-         "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "BKD": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "BRANE": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "GERGA": [
-            {
-               "direction": "EVEN",
-               "destinations": [
-                  "EDDM"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "RAKIT": [
-            {
-               "direction": "EVEN",
-               "airways": [
-                  "M725",
-                  "UM725"
-               ]
-            },
-            {
-               "direction": "ODD"
-            }
-         ],
-         "LANUM": [
             {
                "direction": "ANY",
-               "destinations": [
-                  "EDDT",
-                  "EDDB",
-                  "EDDI"
-               ]
+               "forbidden_fls": ["250"]
             }
          ],
-         "TERDA": [
-            {
-               "direction": "ANY",
-               "destinations": [
-                  "EDDT",
-                  "EDDB",
-                  "EDDI"
-               ]
-            }
-         ]
+         "ANDIK": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "direction": "ODD"
+         }],
+         "ARNEM": [{
+            "direction": "ODD",
+            "max_fl": 235,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDFH"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "forbidden_fls": ["250"],
+            "direction": "ODD"
+         }],
+         "BERGI": [{
+            "direction": "EVEN",
+            "max_fl": 335,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGCC",
+               "EGCN",
+               "EGNH",
+               "EGNM",
+               "EGNO",
+               "EGNJ",
+               "EGNT",
+               "EGNV"
+            ],
+            "airways": [
+               "KOLAG",
+               "RAMSO",
+               "RAVLO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "BETUS": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },{
+            "direction": "ODD"
+         }],
+         "DENAG": [{
+            "direction": "EVEN",
+            "max_fl": 205,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLC",
+               "EGKB",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 215,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGMD"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLL",
+               "EGKK",
+               "EGSS",
+               "EGMC",
+               "LFOH",
+               "LFRG",
+               "EGBJ",
+               "EGHH",
+               "EGHI",
+               "EGVA",
+               "EGVN"
+            ]
+         },{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "EDUPO": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LSZR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFSB",
+               "LSGG",
+               "LSZH",
+               "LFHJ",
+               "LFKL",
+               "EDDF",
+               "EDDN",
+               "EDDS"
+            ]
+         },
+         {
+            "direction": "ODD"
+         }],
+         "ELPAT": [{
+            "direction": "ODD",
+            "max_fl": 235,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDFH"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "IDRID": [{
+            "direction": "EVEN",
+            "max_fl": 205,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLC",
+               "EGKB",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 215,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGMD"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLL",
+               "EGKK",
+               "EGSS",
+               "EGMC",
+               "LFOH",
+               "LFRG",
+               "EGBJ",
+               "EGHH",
+               "EGHI",
+               "EGVA",
+               "EGVN"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "IVLUT": [{
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFSB",
+               "LSGG",
+               "LSZH",
+               "LFHJ",
+               "LFKL",
+               "EDDF",
+               "EDDN",
+               "EDDS"
+            ]
+         },
+         {
+            "direction": "ODD"
+         }],
+         "KUDAD": [{
+            "direction": "ODD",
+            "max_fl": 155,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EBBR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFST",
+               "LFGO",
+               "EDTL",
+               "LFQQ",
+               "LFOH",
+               "LFRG",
+               "ELLX",
+               "LFPG",
+               "LFPO",
+               "LFOB",
+               "LFPB",
+               "LFOK"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 315,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFLC"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 295,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFLL",
+               "LFLY"
+            ],
+            "airways": [
+               "LESDO"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDN",
+               "EDDS",
+               "LFLL",
+               "LFLY",
+               "LFHJ",
+               "LFKL",
+               "LFSB",
+               "LSGG"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "LARAS": [{
+            "direction": "ODD",
+            "max_fl": 155,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EBBR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFST",
+               "LFGO",
+               "EDTL",
+               "LFQQ",
+               "LFOH",
+               "LFRG",
+               "ELLX",
+               "LFPG",
+               "LFPO",
+               "LFOB",
+               "LFPB",
+               "LFOK"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 315,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFLC"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDN",
+               "EDDS",
+               "LFLL",
+               "LFLY",
+               "LFHJ",
+               "LFKL",
+               "LFSB",
+               "LSGG"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "LOPIK": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LSZR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 75,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHBD",
+               "EHBK",
+               "EHEH",
+               "EHRD"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFST",
+               "LFGO",
+               "EDTL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 235,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDFH"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFSB",
+               "LSGG",
+               "LSZH",
+               "LFHJ",
+               "LFKL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "NOPSU": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "NYKER": [{
+            "direction": "ODD",
+            "max_fl": 235,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDFH"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "OGINA": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LSZR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 75,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHBD",
+               "EHBK",
+               "EHEH",
+               "EHRD"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFST",
+               "LFGO",
+               "EDTL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 235,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDFH"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFSB",
+               "LSGG",
+               "LSZH",
+               "LFHJ",
+               "LFKL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "RENDI": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LSZR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFSB",
+               "LSGG",
+               "LSZH",
+               "LFHJ",
+               "LFKL",
+               "EDDF",
+               "EDDN",
+               "EDDS"
+            ]
+         },
+         {
+            "direction": "ODD"
+         }],
+         "ROVEN": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LSZR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 75,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHBD",
+               "EHBK",
+               "EHEH",
+               "EHRD"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFST",
+               "LFGO",
+               "EDTL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 235,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDFH"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFSB",
+               "LSGG",
+               "LSZH",
+               "LFHJ",
+               "LFKL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "SPY": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDW",
+               "EDDV"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 375,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "VALKO": [{
+            "direction": "EVEN",
+            "max_fl": 205,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLC",
+               "EGKB",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 215,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGMD"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLL",
+               "EGKK",
+               "EGSS",
+               "EGMC",
+               "LFOH",
+               "LFRG",
+               "EGBJ",
+               "EGHH",
+               "EGHI",
+               "EGVA",
+               "EGVN"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "VOLLA": [{
+            "direction": "EVEN",
+            "max_fl": 205,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLC",
+               "EGKB",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 215,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGMD"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGLL",
+               "EGKK",
+               "EGSS",
+               "EGMC",
+               "LFOH",
+               "LFRG",
+               "EGBJ",
+               "EGHH",
+               "EGHI",
+               "EGVA",
+               "EGVN"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "WISPA": [{
+            "direction": "EVEN",
+            "max_fl": 335,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGCC",
+               "EGCN",
+               "EGNH",
+               "EGNM",
+               "EGNO",
+               "EGNJ",
+               "EGNT",
+               "EGNV"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "WOODY": [{
+            "direction": "ODD",
+            "max_fl": 155,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EBBR"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 245,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFST",
+               "LFGO",
+               "EDTL",
+               "LFQQ",
+               "LFOH",
+               "LFRG",
+               "ELLX",
+               "LFPG",
+               "LFPO",
+               "LFOB",
+               "LFPB",
+               "LFOK"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 315,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "LFLC"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 355,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDN",
+               "EDDS",
+               "LFLL",
+               "LFLY",
+               "LFHJ",
+               "LFKL",
+               "LFSB",
+               "LSGG"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }]
       }
    },
    {
-      "icao": "EDDB",
-      "sids": {
-         "VCT": [
-            {
-                "direction": "ANY"
-            }
-         ],
-         "ARSAP": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1M",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1Q",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1Z",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            }
-         ],
-         "GERGA": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1M",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1Q",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1Z",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            }
-         ],
-         "LUROS": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1M",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1Q",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            },
-            {
-                "suffix": "1Z",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "ODD"
-            }
-         ],
-         "POVEL": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1C",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1K",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1J",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1P",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Q",
-                "engine": "J",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1R",
-                "engine": "T",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Y",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Z",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            }
-         ],
-         "HLZ": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1C",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1K",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1J",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1P",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Q",
-                "engine": "J",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1R",
-                "engine": "T",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Y",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Z",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            }
-         ],
-         "MAXAN": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1C",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1K",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1J",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Q",
-                "engine": "J",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1R",
-                "engine": "T",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Y",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Z",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            }
-         ],
-         "ODLUN": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1C",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1K",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1J",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1P",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Q",
-                "engine": "J",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1R",
-                "engine": "T",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Y",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Z",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            }
-         ],
-         "SOGMA": [
-            {
-                "suffix": "1A",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1B",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1C",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1D",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1K",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1J",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1N",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1P",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Q",
-                "engine": "J",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1R",
-                "engine": "T",
-                "min_fl": 120,
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Y",
-                "engine": "T",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            },
-            {
-                "suffix": "1Z",
-                "engine": "J",
-                "navigation": "MNPYLCIEFGRWHQS",
-                "direction": "EVEN"
-            }
-         ],
-         "ROKMU": [
-            {
-                "suffix": "1P",
-                "engine": "T",
-                "navigation": "TXU",
-                "direction": "EVEN"
-            }
-         ]
-      }
-   },
-   {
-      "icao": "EDDP",
+      "icao": "EHEH",
       "sids": {
          "VCT": [
             {
                "direction": "ANY"
             }
          ],
-         "LELMA": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "MAG": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "NAMUB": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "ODLUN": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "ORTAG": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "TORPU": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "UMBAL": [
-            {
-               "direction": "ODD"
-            }
-         ]
+         "ABNED": [{
+            "direction": "EVEN",
+            "max_fl": 245,
+            "destinations": [
+               "EGLL",
+               "EGKK",
+               "EGSS",
+               "EGMC",
+               "EGBJ",
+               "EGHH",
+               "EGHI",
+               "EGVA",
+               "EGVN"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "ELSIK": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EBBR",
+               "EBAW"
+            ]
+         }],
+         "INKET": [{
+            "direction": "EVEN",
+            "max_fl": 75,
+            "destinations": [
+               "EHRD"
+            ]
+         }],
+         "LNO": [{
+            "direction": "ODD",
+            "max_fl": 295,
+            "destinations": [
+               "LFLL",
+               "LFLY"
+            ],
+            "airways": [
+               "LESDO"
+            ],
+            "forbidden_fls": ["250"]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "OSGOS": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHBK"
+            ]
+         }],
+         "PESER": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHAM"
+            ]
+         }],
+         "TENLI": [{
+            "direction": "EVEN",
+            "max_fl": 95,
+            "destinations": [
+               "EHGG",
+               "EHLE"
+            ]
+         }],
+         "TULIP": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "VELNI": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "WOODY": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }]
       }
    },
    {
-      "icao": "EDDF",
+      "icao": "EHRD",
       "sids": {
-         "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "ANEKI": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "CINDY": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "KOMIB": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "MARUN": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "OBOKA": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "SOBRA": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "SULUS": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "TOBAK": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "ULKIG": [
-            {
-               "direction": "EVEN"
-            }
-         ]
+         "ARNEM": [{
+            "direction": "ODD",
+            "max_fl": 295,
+            "destinations": [
+               "LFLL",
+               "LFLY"
+            ],
+            "airways": [
+               "LESDO"
+            ],
+            "forbidden_fls": ["250"]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"],
+            "max_fl": 375,
+            "destinations": [
+               "EDDB"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "ABNED": [{
+            "direction": "EVEN",
+            "max_fl": 205,
+            "destinations": [
+               "EGKB",
+               "EGLC",
+               "EGMC",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "ANDIK": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "COA": [{
+            "direction": "EVEN",
+            "max_fl": 215,
+            "destinations": [
+               "EGMD"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 205,
+            "destinations": [
+               "EGKB",
+               "EGLC",
+               "EGMC",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 245,
+            "destinations": [
+               "LFOH",
+               "LFRG"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 295,
+            "destinations": [
+               "LFLL",
+               "LFLY"
+            ],
+            "airways": [
+               "LESDO"
+            ],
+            "forbidden_fls": ["250"]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "INKET": [{
+            "direction": "ODD",
+            "max_fl": 235,
+            "destinations": [
+               "EDFH",
+               "EDDL"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "LUNIX": [{
+            "direction": "ODD",
+            "max_fl": 355,
+            "destinations": [
+               "EDDF"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "NEPTU": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "SOMEL": [{
+            "direction": "EVEN",
+            "max_fl": 205,
+            "destinations": [
+               "EGKB",
+               "EGLC",
+               "EGMC",
+               "EGTO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "TULIP": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "WOODY": [{
+            "direction": "ODD",
+            "max_fl": 245,
+            "destinations": [
+               "LFOH",
+               "LFRG"
+            ]
+         },
+         {
+            "direction": "ODD",
+            "max_fl": 295,
+            "destinations": [
+               "LFLL",
+               "LFLY"
+            ],
+            "airways": [
+               "LESDO"
+            ],
+            "forbidden_fls": ["250"]
+         },
+         {
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }]
       }
    },
    {
-      "icao": "EDDL",
+      "icao": "EHGG",
       "sids": {
-         "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "COL": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "DODEN": [
-            {
-               "direction": "ODD",
-               "min_fl": 250
-            }
-         ],
-         "GMH": [
-            {
-               "direction": "ODD",
-               "max_fl": 140
-            }
-         ],
-         "KUMIK": [
-            {
-               "direction": "ODD",
-               "min_fl": 150
-            }
-         ],
-         "LMA": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "MEVEL": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "MODRU": [
-            {
-               "direction": "EVEN",
-               "min_fl": 210
-            }
-         ],
-         "NETEX": [
-            {
-               "direction": "EVEN",
-               "min_fl": 100,
-               "max_fl": 200
-            }
-         ],
-         "NUDGO": [
-            {
-               "direction": "ODD",
-               "max_fl": 245
-            }
-         ],
-         "NVO": [
-            {
-               "direction": "EVEN",
-               "max_fl": 90
-            }
-         ],
-         "SONEB": [
-            {
-               "direction": "EVEN",
-               "min_fl": 140
-            }
-         ]
+         "DOBAK": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "ENKOS": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHRD"
+            ]
+         }],
+         "NAPRO": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "NOVEN": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "min_fl": 70,
+            "destinations": [
+               "EHAM"
+            ]
+         }],
+         "OLWOF": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "PAM": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "ROLDU": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHLE"
+            ]
+         }],
+         "RUMER": [{
+            "direction": "ODD",
+            "max_fl": 95,
+            "destinations": [
+               "EHEH",
+               "EHBD",
+               "EHBK"
+            ]
+         }],
+         "SONEB": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "SPY": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         },
+         {
+            "direction": "EVEN",
+            "max_fl": 335,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGCC",
+               "EGCN",
+               "EGNH",
+               "EGNM",
+               "EGNO",
+               "EGNJ",
+               "EGNT",
+               "EGNV"
+            ],
+            "airways": [
+               "KOLAG",
+               "RAMSO",
+               "RAVLO"
+            ]
+         }],
+         "TEBRO": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EDDL",
+               "EDLN",
+               "EDLV"
+            ]
+         }],
+         "TEMLU": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }]
       }
    },
    {
-      "icao": "EDDS",
+      "icao": "EHBK",
       "sids": {
-         "VCT": [
-            {
-               "direction": "ANY"
-            }
-         ],
-         "ABTAL": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "DKB": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "ETASA": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "GEBNO": [
-            {
-               "direction": "EVEN",
-               "max_fl": 180
-            }
-         ],
-         "KRH": [
-            {
-               "direction": "EVEN",
-               "max_fl": 80
-            }
-         ],
-         "KUNOD": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "OKIBA": [
-            {
-               "direction": "EVEN",
-               "min_fl": 200
-            }
-         ],
-         "ROTWE": [
-            {
-               "direction": "EVEN"
-            }
-         ],
-         "STG": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "SUL": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "TAGIK": [
-            {
-               "direction": "EVEN",
-               "max_fl": 240
-            }
-         ],
-         "TEDGO": [
-            {
-               "direction": "ODD"
-            }
-         ],
-         "VESID": [
-            {
-               "direction": "EVEN"
-            }
-         ]
+         "NETEX": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "LNO": [{
+            "direction": "EVEN",
+            "max_fl": 335,
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EGCC",
+               "EGCN",
+               "EGNH",
+               "EGNM",
+               "EGNO",
+               "EGNJ",
+               "EGNT",
+               "EGNV"
+            ],
+            "airways": [
+               "KOLAG",
+               "RAMSO",
+               "RAVLO"
+            ]
+         },
+         {
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "NVO": [{
+            "direction": "ODD",
+            "forbidden_fls": ["250"]
+         }],
+         "OSGOS": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"]
+         }],
+         "PESER": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHAM"
+            ]
+         }],
+         "TENLI": [{
+            "direction": "EVEN",
+            "forbidden_fls": ["250"],
+            "destinations": [
+               "EHGG",
+               "EHLE"
+            ]
+         }]
       }
    }
 ]
