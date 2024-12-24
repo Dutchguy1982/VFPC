@@ -161,6 +161,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		if (first_airway == "DCT") {
 			returnValid["SEARCH"] = "Flightplan contains a DCT after the SID!";
 			returnValid["STATUS"] = "Failed";
+			return returnValid;
 		}
 	}
 
@@ -224,10 +225,6 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 				returnValid["AIRWAYS"] = "Passed Airways";
 				passed[1] = true;
 			}
-			if (first_airway == "DCT") {
-				returnValid["AIRWAYS"] = "Failed Airways";
-				passed[1] = false;
-			}
 			else {
 				continue;
 			}
@@ -235,6 +232,11 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		else {
 			returnValid["AIRWAYS"] = "No Airway restr";
 			passed[1] = true;
+		}
+
+		if (first_airway == "DCT") {
+			returnValid["AIRWAYS"] = "Failed Airways";
+			passed[1] = false;
 		}
 
 		// Is Engine Type if it's limited (P=piston, T=turboprop, J=jet, E=electric)
