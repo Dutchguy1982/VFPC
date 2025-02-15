@@ -8,6 +8,8 @@ bool debugMode, initialSidLoad;
 
 int disCount;
 
+const int checksAmount = 9;
+
 ifstream sidDatei;
 char DllPathFile[_MAX_PATH];
 string pfad;
@@ -127,6 +129,12 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		boost::to_upper(route[i]);
 	}
 
+	if (strcmp(flightPlan.GetFlightPlanData().GetPlanType(), "V") > -1) {
+		returnValid["SEARCH"] = "VFR Flight, no SID required!";
+		returnValid["STATUS"] = "Passed";
+		return returnValid;
+	}
+
 	string sid = flightPlan.GetFlightPlanData().GetSidName(); boost::to_upper(sid);
 
 	// Flightplan has SID
@@ -158,11 +166,6 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 	if (it != route.end() && (it - route.begin()) != route.size() - 1) {
 		first_airway = route[(it - route.begin()) + 1];
 		boost::to_upper(first_airway);
-		if (first_airway == "DCT") {
-			returnValid["SEARCH"] = "Flightplan contains a DCT after the SID!";
-			returnValid["STATUS"] = "Failed";
-			return returnValid;
-		}
 	}
 
 	// Airport defined
@@ -192,7 +195,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 	for (SizeType i = 0; i < conditions.Size(); i++) {
 		returnValid.clear();
 		returnValid["CS"] = flightPlan.GetCallsign();
-		bool passed[8]{ false };
+		bool passed[checksAmount]{ false };
 		valid = false;
 
 		// Skip SID if the check is suffix-related
@@ -235,8 +238,11 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 
 		if (first_airway == "DCT") {
-			returnValid["AIRWAYS"] = "Failed Airways";
-			passed[1] = false;
+			returnValid["SID_DCT"] = "Failed: Flightplan contains a DCT after the SID!";
+		}
+		else{
+			returnValid["SID_DCT"] = "No DCT after SID";
+			passed[8] = true;
 		}
 
 		// Is Engine Type if it's limited (P=piston, T=turboprop, J=jet, E=electric)
@@ -364,7 +370,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 
 		bool passedVeri{ false };
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < checksAmount; i++) {
 			if (passed[i])
 			{
 				passedVeri = true;
@@ -392,7 +398,6 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		returnValid["SID"] = "No valid SID found!";
 		returnValid["STATUS"] = "Failed";
 	}
-	
 	return returnValid;
 }
 
@@ -522,19 +527,25 @@ bool CVFPCPlugin::OnCompileCommand(const char * sCommandLine) {
 void CVFPCPlugin::checkFPDetail() {	
 	map<string, string> messageBuffer = validizeSid(FlightPlanSelectASEL());
 	string buffer{};
-
 	if (messageBuffer.find("SEARCH") == messageBuffer.end()) {
 		buffer += messageBuffer["STATUS"] + " SID " + messageBuffer["SID"] + ": ";
 
-		map<string, string>::iterator it;
-		for (it = messageBuffer.begin(); it != messageBuffer.end(); it++)
+		int iterator_count = 1;
+		for (auto const& [key, val] : messageBuffer)
 		{
-			if (it->first == "CS" || it->first == "STATUS" || it->first == "SID")
+			if (key == "CS" || key == "STATUS" || key == "SID")
 				continue;
-			buffer += it->second + ", ";
+			buffer += val;
+
+			iterator_count++;
+
+			if(iterator_count <= (messageBuffer.size() - 3)){
+				buffer += ", ";
+			}
 		}
-	} else {
-		buffer = "Failed: " + messageBuffer["SEARCH"];
+	} 	
+	else {
+		buffer = messageBuffer["STATUS"] + ": " + messageBuffer["SEARCH"];
 	}
 
 	sendMessage(messageBuffer["CS"], buffer);
@@ -558,7 +569,6 @@ pair<string, int> CVFPCPlugin::getFails(map<string, string> messageBuffer) {
 	if (messageBuffer["ENGINE"].find_first_of("Failed") == 0) {
 		fails.push_back("ENG");
 	}
-
 	if (messageBuffer["DIRECTION"].find_first_of("Failed") == 0) {
 		fails.push_back("E/O");
 		failCount++;
@@ -578,6 +588,9 @@ pair<string, int> CVFPCPlugin::getFails(map<string, string> messageBuffer) {
 	if (messageBuffer["NAVIGATION"].find_first_of("Failed") == 0) {
 		fails.push_back("NAV");
 		failCount++;
+	}
+	if (messageBuffer["SID_DCT"].find_first_of("Failed") == 0) {
+		fails.push_back("DCT");
 	}
 
 	std::size_t couldnt = disCount;
