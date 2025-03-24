@@ -23,7 +23,7 @@ vector<string> AircraftIgnore;
 using namespace std;
 using namespace EuroScopePlugIn;
 
-	// Run on Plugin Initialization
+// Run on Plugin Initialization
 CVFPCPlugin::CVFPCPlugin(void) :CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE, MY_PLUGIN_NAME, MY_PLUGIN_VERSION, MY_PLUGIN_DEVELOPER, MY_PLUGIN_COPYRIGHT)
 {
 	string loadingMessage = "Version: ";
@@ -86,11 +86,15 @@ void CVFPCPlugin::getSids() {
 
 		config.Parse<0>("[{\"icao\": \"XXXX\"}]");
 	}
-	
+
+	sid_mapping = config["sid_mapping"];
+
+	sid_details = config["sid_details"];
+
 	airports.clear();
 
-	for (SizeType i = 0; i < config.Size(); i++) {
-		const Value& airport = config[i];
+	for (SizeType i = 0; i < sid_details.Size(); i++) {
+		const Value& airport = sid_details[i];
 		string airport_icao = airport["icao"].GetString();
 
 		airports.insert(pair<string, SizeType>(airport_icao, i));
@@ -123,7 +127,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 	string destination = flightPlan.GetFlightPlanData().GetDestination(); boost::to_upper(destination);
 	SizeType origin_int;
 	int RFL = flightPlan.GetFlightPlanData().GetFinalAltitude();
-	
+
 	vector<string> route = split(flightPlan.GetFlightPlanData().GetRoute(), ' ');
 	for (std::size_t i = 0; i < route.size(); i++) {
 		boost::to_upper(route[i]);
@@ -162,10 +166,30 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 
 	string first_airway;
 
+	string first_pt;
+
+	string assigned_sid = first_wp;
+
+
+	if (sid_mapping.HasMember(first_wp.c_str())) {
+		string temp = sid_mapping[first_wp.c_str()].GetString();
+		first_wp = temp;
+	}
+
 	vector<string>::iterator it = find(route.begin(), route.end(), first_wp);
 	if (it != route.end() && (it - route.begin()) != route.size() - 1) {
 		first_airway = route[(it - route.begin()) + 1];
+
+		first_pt = route[0];
+
 		boost::to_upper(first_airway);
+	}
+
+
+	if (first_airway.empty() || first_pt.empty()) {
+		returnValid["SEARCH"] = "Could not determine routing to check!";
+		returnValid["STATUS"] = "Failed";
+		return returnValid;
 	}
 
 	// Airport defined
@@ -178,20 +202,20 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		origin_int = airports[origin];
 
 	// Any SIDs defined
-	if (!config[origin_int].HasMember("sids") || config[origin_int]["sids"].IsArray()) {
+	if (!sid_details[origin_int].HasMember("sids") || sid_details[origin_int]["sids"].IsArray()) {
 		returnValid["SEARCH"] = "No SIDs defined!";
 		returnValid["STATUS"] = "Failed";
 		return returnValid;
 	}
 
 	// Needed SID defined
-	if (!config[origin_int]["sids"].HasMember(first_wp.c_str()) || !config[origin_int]["sids"][first_wp.c_str()].IsArray()) {
+	if (!sid_details[origin_int]["sids"].HasMember(assigned_sid.c_str()) || !sid_details[origin_int]["sids"][assigned_sid.c_str()].IsArray()) {
 		returnValid["SEARCH"] = "No valid SID found!";
 		returnValid["STATUS"] = "Failed";
 		return returnValid;
 	}
 
-	const Value& conditions = config[origin_int]["sids"][first_wp.c_str()];
+	const Value& conditions = sid_details[origin_int]["sids"][assigned_sid.c_str()];
 	for (SizeType i = 0; i < conditions.Size(); i++) {
 		returnValid.clear();
 		returnValid["CS"] = flightPlan.GetCallsign();
@@ -240,10 +264,15 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		if (first_airway == "DCT") {
 			returnValid["SID_DCT"] = "Failed: Flightplan contains a DCT after the SID!";
 		}
-		else{
+		else {
 			returnValid["SID_DCT"] = "No DCT after SID";
 			passed[8] = true;
 		}
+
+		returnValid["DEBUG_AIRWAY_CHK"] = first_airway;
+		returnValid["DEBUG_AIRWAY_CHK2"] = first_wp;
+		returnValid["DEBUG_AIRWAY_CHK3"] = first_pt;
+		//returnValid["AIRWAY_CHK3"] = route[0];
 
 		// Is Engine Type if it's limited (P=piston, T=turboprop, J=jet, E=electric)
 		if (conditions[i]["engine"].IsString()) {
@@ -271,7 +300,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 
 
 		valid = true;
-		returnValid["SID"] = first_wp;
+		returnValid["SID"] = assigned_sid;
 
 		// Direction of condition (EVEN, ODD, ANY)
 		string direction = conditions[i]["direction"].GetString();
@@ -301,11 +330,11 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 		else {
 			string errorText{ "Config Error for Even/Odd on SID: " };
-			errorText += first_wp;
+			errorText += assigned_sid;
 			sendMessage("Error", errorText);
 			returnValid["DIRECTION"] = "Config Error for Even/Odd on this SID!";
 		}
-		
+
 		// Flight level (min_fl, max_fl)
 		int min_fl, max_fl;
 		if (conditions[i].HasMember("min_fl") && (min_fl = conditions[i]["min_fl"].GetInt()) > 0) {
@@ -391,9 +420,9 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 			else
 				break;
 		}
-		
+
 	}
-	
+
 	if (!valid) {
 		returnValid["SID"] = "No valid SID found!";
 		returnValid["STATUS"] = "Failed";
@@ -402,9 +431,9 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 }
 
 //
-void CVFPCPlugin::OnFunctionCall(int FunctionId, const char * ItemString, POINT Pt, RECT Area) {
+void CVFPCPlugin::OnFunctionCall(int FunctionId, const char* ItemString, POINT Pt, RECT Area) {
 	CFlightPlan fp = FlightPlanSelectASEL();
-	
+
 	if (FunctionId == TAG_FUNC_CHECKFP_MENU) {
 		OpenPopupList(Area, "Check FP", 1);
 		AddPopupListElement("Show Checks", "", TAG_FUNC_CHECKFP_CHECK, false, 2, false);
@@ -455,10 +484,10 @@ void CVFPCPlugin::OnGetTagItem(CFlightPlan FlightPlan, CRadarTarget RadarTarget,
 				if (messageBuffer["FORBIDDEN_FL"].find_first_of("Failed") == 0 && count == 1)
 					*pRGB = TAG_YELLOW;
 				else
-				*pRGB = TAG_RED;
+					*pRGB = TAG_RED;
 				strcpy_s(sItemString, 16, code.c_str());
 			}
-			
+
 		}
 	}
 	else if ((ItemCode == TAG_ITEM_FPCHECK_IF_FAILED || ItemCode == TAG_ITEM_FPCHECK_IF_FAILED_STATIC) && FlightPlan.GetFlightPlanData().GetPlanType() != "V")
@@ -483,11 +512,11 @@ void CVFPCPlugin::OnGetTagItem(CFlightPlan FlightPlan, CRadarTarget RadarTarget,
 //
 void CVFPCPlugin::OnFlightPlanDisconnect(CFlightPlan FlightPlan)
 {
-	AircraftIgnore.erase(remove(AircraftIgnore.begin(), AircraftIgnore.end(), FlightPlan.GetCallsign()), AircraftIgnore.end());	
+	AircraftIgnore.erase(remove(AircraftIgnore.begin(), AircraftIgnore.end(), FlightPlan.GetCallsign()), AircraftIgnore.end());
 }
 
 //
-bool CVFPCPlugin::OnCompileCommand(const char * sCommandLine) {
+bool CVFPCPlugin::OnCompileCommand(const char* sCommandLine) {
 	if (startsWith(".vfpc reload", sCommandLine))
 	{
 		sendMessage("Unloading all loaded SIDs...");
@@ -502,7 +531,8 @@ bool CVFPCPlugin::OnCompileCommand(const char * sCommandLine) {
 		if (debugMode) {
 			debugMessage("DebugMode", "Deactivating Debug Mode!");
 			debugMode = false;
-		} else {
+		}
+		else {
 			debugMode = true;
 			debugMessage("DebugMode", "Activating Debug Mode!");
 		}
@@ -524,7 +554,7 @@ bool CVFPCPlugin::OnCompileCommand(const char * sCommandLine) {
 }
 
 // Sends to you, which checks were failed and which were passed on the selected aircraft
-void CVFPCPlugin::checkFPDetail() {	
+void CVFPCPlugin::checkFPDetail() {
 	map<string, string> messageBuffer = validizeSid(FlightPlanSelectASEL());
 	string buffer{};
 	if (messageBuffer.find("SEARCH") == messageBuffer.end()) {
@@ -533,28 +563,30 @@ void CVFPCPlugin::checkFPDetail() {
 		int iterator_count = 1;
 		for (auto const& [key, val] : messageBuffer)
 		{
-			if (key == "CS" || key == "STATUS" || key == "SID")
+			if (key == "CS" || key == "STATUS" || key == "SID" || key.rfind("DEBUG", 0) == 0)
 				continue;
 			buffer += val;
 
 			iterator_count++;
 
-			if(iterator_count <= (messageBuffer.size() - 3)){
+			if (iterator_count <= (messageBuffer.size() - 3)) {
 				buffer += ", ";
 			}
 		}
-	} 	
+	}
 	else {
 		buffer = messageBuffer["STATUS"] + ": " + messageBuffer["SEARCH"];
 	}
 
 	sendMessage(messageBuffer["CS"], buffer);
+	debugMessage(messageBuffer["CS"], ("First point (or airway) after the SID: " + messageBuffer["DEBUG_AIRWAY_CHK"] + ", First waypoint (can differ from first fix): " + messageBuffer["DEBUG_AIRWAY_CHK2"] + ", First fix: " + messageBuffer["DEBUG_AIRWAY_CHK3"]));
+
 }
 
 pair<string, int> CVFPCPlugin::getFails(map<string, string> messageBuffer) {
 	vector<string> fails;
 	int failCount = 0;
-	
+
 	fails.push_back("FPL");
 
 	if (messageBuffer.find("STATUS") != messageBuffer.end()) {
@@ -616,7 +648,8 @@ void CVFPCPlugin::OnTimer(int Counter) {
 		string callsign{ ControllerMyself().GetCallsign() };
 		getSids();
 		initialSidLoad = true;
-	} else if (GetConnectionType() == CONNECTION_TYPE_NO && initialSidLoad) {
+	}
+	else if (GetConnectionType() == CONNECTION_TYPE_NO && initialSidLoad) {
 		sidName.clear();
 		sidEven.clear();
 		sidMin.clear();

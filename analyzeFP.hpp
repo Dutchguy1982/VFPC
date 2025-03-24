@@ -13,12 +13,12 @@
 #include "rapidjson/stringbuffer.h"
 
 #define MY_PLUGIN_NAME      "VFPC"
-#define MY_PLUGIN_VERSION   "2.2.2"
+#define MY_PLUGIN_VERSION   "2.2.3"
 #define MY_PLUGIN_DEVELOPER "Christian van den Broek, Jan Fries, Hendrik Peter, Sven Czarnian"
 #define MY_PLUGIN_COPYRIGHT "GPL v3"
 #define MY_PLUGIN_VIEW_AVISO  "Vatsim FlightPlan Checker"
 
-#define PLUGIN_WELCOME_MESSAGE	"Willkommen beim Vatsim Flugplan-RFL checker"
+#define PLUGIN_WELCOME_MESSAGE	"Flight Plan Checker"
 
 using namespace std;
 using namespace boost;
@@ -36,7 +36,7 @@ public:
 
 	virtual map<string, string> validizeSid(CFlightPlan flightPlan);
 
-	virtual void OnFunctionCall(int FunctionId, const char * ItemString, POINT Pt, RECT Area);
+	virtual void OnFunctionCall(int FunctionId, const char* ItemString, POINT Pt, RECT Area);
 
 	//Define OnGetTagItem function
 	virtual void OnGetTagItem(CFlightPlan FlightPlan,
@@ -108,8 +108,8 @@ public:
 	}
 
 	virtual void OnFlightPlanDisconnect(CFlightPlan FlightPlan);
-	
-	virtual bool OnCompileCommand(const char * sCommandLine);
+
+	virtual bool OnCompileCommand(const char* sCommandLine);
 
 	virtual void debugMessage(string type, string message);
 
@@ -125,6 +125,8 @@ public:
 
 protected:
 	Document config;
+	Value sid_details;
+	Value sid_mapping;
 	map<string, rapidjson::SizeType> airports;
 };
 
