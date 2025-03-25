@@ -248,16 +248,41 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		// Does Condition contain our first airway if it's limited
 		if (conditions[i]["airways"].IsArray() && conditions[i]["airways"].Size()) {
 			string rte = flightPlan.GetFlightPlanData().GetRoute();
-			if (routeContains(rte, conditions[i]["airways"])) {
-				returnValid["AIRWAYS"] = "Passed Airways";
+			auto test = flightPlan.GetExtractedRoute().GetPointsNumber();
+			//if (routeContains(rte, conditions[i]["airways"])) {
+			if (routeContainsAirways(flightPlan, conditions[i]["airways"])) {
+				returnValid["AIRWAYS"] = "Passed Airways"; // +std::to_string(conditions[i]["airways"].IsArray()) + " cond id " + std::to_string(i);
 				passed[1] = true;
 			}
 			else {
-				continue;
+				string banana;
+				for (int i = 0; i < test; i++) {
+					string item = flightPlan.GetExtractedRoute().GetPointName(i);
+					banana.append(item + " ");
+				}
+				string waypoints;
+				for (SizeType j = 0; j < conditions[i]["airways"].Size(); j++) {
+					string waypoint = conditions[i]["airways"][j].GetString();
+					if (conditions[i]["airways"].Size() > j+1) {
+						waypoint += ", ";
+					}
+					/*else {
+
+					}*/
+					waypoints.append(waypoint);
+				}
+				auto pos = waypoints.find_last_of(",");
+				waypoints.replace(pos, 1, " or");
+
+				//returnValid["AIRWAYS"] = "Failed Airways. FP not routing via " + std::to_string(test) + ":::: " + banana;
+				returnValid["AIRWAYS"] = "Failed Airways. FP not routing via either " + waypoints; // +":::: " + banana;
+
+				
+				//continue;
 			}
 		}
 		else {
-			returnValid["AIRWAYS"] = "No Airway restr";
+			returnValid["AIRWAYS"] = "No Airway restr"; //  +std::to_string(conditions[i]["airways"].IsArray()) + " cond id " + std::to_string(i);
 			passed[1] = true;
 		}
 
@@ -399,6 +424,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 
 		bool passedVeri{ false };
+
 		for (int i = 0; i < checksAmount; i++) {
 			if (passed[i])
 			{
@@ -415,7 +441,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 		else {
 			returnValid["STATUS"] = "Failed";
-			if (!passed[0] || !passed[1])
+			if (!passed[0]) // || !passed[1])
 				continue;
 			else
 				break;
@@ -657,4 +683,28 @@ void CVFPCPlugin::OnTimer(int Counter) {
 		initialSidLoad = false;
 		sendMessage("Unloading", "All loaded SIDs");
 	}
+}
+
+bool CVFPCPlugin::routeContainsAirways(CFlightPlan flightPlan, const Value& airways) {
+	bool routeContainsAirway = false;
+	int test = flightPlan.GetExtractedRoute().GetPointsNumber();
+
+	for (int i = 0; i < test; i++) {
+		string item = flightPlan.GetExtractedRoute().GetPointName(i);
+		// Apparently this is broken in this project for some reason...
+		//auto find = std::find(a.Begin(), a.End(), item);
+		for (SizeType j = 0; j < airways.Size(); j++) {
+			if (item == airways[j].GetString()) {
+				routeContainsAirway = true;
+				return routeContainsAirway;
+			}
+		}
+		/*if (std::find(a.Begin(), a.End(), 1) != a.End()) {
+			routeContainsAirway = true;
+			return routeContainsAirway;
+		}*/
+	}
+	//returnValid["AIRWAYS"] = "Failed Airways" + std::to_string(test) + ":::: " + banana;
+	//continue;
+	return routeContainsAirway;
 }

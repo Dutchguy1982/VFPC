@@ -123,6 +123,8 @@ public:
 
 	virtual void OnTimer(int Count);
 
+	virtual bool routeContainsAirways(CFlightPlan flightPlan, const Value& a);
+
 protected:
 	Document config;
 	Value sid_details;
