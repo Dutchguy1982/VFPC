@@ -13,7 +13,7 @@
 #include "rapidjson/stringbuffer.h"
 
 #define MY_PLUGIN_NAME      "VFPC"
-#define MY_PLUGIN_VERSION   "2.2.3"
+#define MY_PLUGIN_VERSION   "3.0.0"
 #define MY_PLUGIN_DEVELOPER "Christian van den Broek, Jan Fries, Hendrik Peter, Sven Czarnian"
 #define MY_PLUGIN_COPYRIGHT "GPL v3"
 #define MY_PLUGIN_VIEW_AVISO  "Vatsim FlightPlan Checker"
@@ -122,6 +122,8 @@ public:
 	virtual pair<string, int> getFails(map<string, string> messageBuffer);
 
 	virtual void OnTimer(int Count);
+
+	virtual bool routeContainsAirways(CFlightPlan flightPlan, const Value& a);
 
 protected:
 	Document config;

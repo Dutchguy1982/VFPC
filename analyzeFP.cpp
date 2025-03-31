@@ -73,6 +73,7 @@ void CVFPCPlugin::sendMessage(string message) {
 	DisplayUserMessage("Message", "VFPC", message.c_str(), true, true, true, false, false);
 }
 
+// Parses the Sid.json file
 void CVFPCPlugin::getSids() {
 	stringstream ss;
 	ifstream ifs;
@@ -115,6 +116,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		MAX_FL = Maximum Flight Level,
 		FORBIDDEN_FL = Forbidden Flight Level,
 		NAVIGATION = Navigation restriction,
+		SID_DCT = A DCT after the exit fix
 		STATUS = Passed
 	*/
 	map<string, string> returnValid;
@@ -185,9 +187,10 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		boost::to_upper(first_airway);
 	}
 
-
-	if (first_airway.empty() || first_pt.empty()) {
-		returnValid["SEARCH"] = "Could not determine routing to check!";
+	// If the route contains only one waypoint, it's probably a route that goes within the EHAA FIR.
+	// Therefore the SID is probably OK to verify.
+	if (route.size() != 1 && (first_airway.empty() || first_pt.empty())) {
+		returnValid["SEARCH"] = "Could not determine routing to check!\nDEBUG LOG! >> First Airway: " + first_airway + ", First Pt: " + first_pt + ", ROUTE LEN: " + std::to_string(route.size());
 		returnValid["STATUS"] = "Failed";
 		return returnValid;
 	}
@@ -248,12 +251,27 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		// Does Condition contain our first airway if it's limited
 		if (conditions[i]["airways"].IsArray() && conditions[i]["airways"].Size()) {
 			string rte = flightPlan.GetFlightPlanData().GetRoute();
-			if (routeContains(rte, conditions[i]["airways"])) {
+			auto test = flightPlan.GetExtractedRoute().GetPointsNumber();
+			if (routeContainsAirways(flightPlan, conditions[i]["airways"])) {
 				returnValid["AIRWAYS"] = "Passed Airways";
 				passed[1] = true;
 			}
 			else {
-				continue;
+				// The airway names, one of which needs to be present
+				string waypoints;
+				for (SizeType j = 0; j < conditions[i]["airways"].Size(); j++) {
+					string waypoint = conditions[i]["airways"][j].GetString();
+					if (conditions[i]["airways"].Size() > j + 1) {
+						waypoint += ", ";
+					}
+					waypoints.append(waypoint);
+				}
+				auto pos = waypoints.find_last_of(",");
+				if (pos != -1)
+					waypoints.replace(pos, 1, " or");
+
+				returnValid["AIRWAYS"] = "Failed Airways. FP not routing via " + waypoints;
+
 			}
 		}
 		else {
@@ -399,6 +417,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 
 		bool passedVeri{ false };
+
 		for (int i = 0; i < checksAmount; i++) {
 			if (passed[i])
 			{
@@ -415,7 +434,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 		else {
 			returnValid["STATUS"] = "Failed";
-			if (!passed[0] || !passed[1])
+			if (!passed[0])
 				continue;
 			else
 				break;
@@ -430,7 +449,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 	return returnValid;
 }
 
-//
+// Method is called when the function (tag) is present
 void CVFPCPlugin::OnFunctionCall(int FunctionId, const char* ItemString, POINT Pt, RECT Area) {
 	CFlightPlan fp = FlightPlanSelectASEL();
 
@@ -509,13 +528,13 @@ void CVFPCPlugin::OnGetTagItem(CFlightPlan FlightPlan, CRadarTarget RadarTarget,
 	}
 }
 
-//
+// Removes aircraft when they disconnect
 void CVFPCPlugin::OnFlightPlanDisconnect(CFlightPlan FlightPlan)
 {
 	AircraftIgnore.erase(remove(AircraftIgnore.begin(), AircraftIgnore.end(), FlightPlan.GetCallsign()), AircraftIgnore.end());
 }
 
-//
+// Compiled commands, to be used in the command line window
 bool CVFPCPlugin::OnCompileCommand(const char* sCommandLine) {
 	if (startsWith(".vfpc reload", sCommandLine))
 	{
@@ -565,14 +584,10 @@ void CVFPCPlugin::checkFPDetail() {
 		{
 			if (key == "CS" || key == "STATUS" || key == "SID" || key.rfind("DEBUG", 0) == 0)
 				continue;
-			buffer += val;
-
-			iterator_count++;
-
-			if (iterator_count <= (messageBuffer.size() - 3)) {
-				buffer += ", ";
-			}
+			buffer += val + ", ";
 		}
+		// removes trailing comma
+		buffer = buffer.substr(0, buffer.size() - 2);
 	}
 	else {
 		buffer = messageBuffer["STATUS"] + ": " + messageBuffer["SEARCH"];
@@ -657,4 +672,27 @@ void CVFPCPlugin::OnTimer(int Counter) {
 		initialSidLoad = false;
 		sendMessage("Unloading", "All loaded SIDs");
 	}
+}
+
+// Checks whether the route contains an airway after the sid
+bool CVFPCPlugin::routeContainsAirways(CFlightPlan flightPlan, const Value& airways) {
+	bool routeContainsAirway = false;
+	// all points of the FP are part of the extracted route, they're numbered. 
+	// Therefore we first get all the numbers (e.g. 8) and then go through all of them to see
+	// if any of the points match any of the given airways, one does, then we return true
+	int total_points = flightPlan.GetExtractedRoute().GetPointsNumber();
+
+	for (int i = 0; i < total_points; i++) {
+		string item = flightPlan.GetExtractedRoute().GetPointName(i);
+		// Apparently this is broken in this project for some reason...
+		//auto find = std::find(airways.Begin(), airways.End(), item);
+		for (SizeType j = 0; j < airways.Size(); j++) {
+			if (item == airways[j].GetString()) {
+				routeContainsAirway = true;
+				return routeContainsAirway;
+			}
+		}
+
+	}
+	return routeContainsAirway;
 }
