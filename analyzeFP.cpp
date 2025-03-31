@@ -434,7 +434,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		}
 		else {
 			returnValid["STATUS"] = "Failed";
-			if (!passed[0]) // || !passed[1])
+			if (!passed[0])
 				continue;
 			else
 				break;
@@ -674,6 +674,7 @@ void CVFPCPlugin::OnTimer(int Counter) {
 	}
 }
 
+// Checks whether the route contains an airway after the sid
 bool CVFPCPlugin::routeContainsAirways(CFlightPlan flightPlan, const Value& airways) {
 	bool routeContainsAirway = false;
 	// all points of the FP are part of the extracted route, they're numbered. 
