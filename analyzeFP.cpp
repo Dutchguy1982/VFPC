@@ -187,9 +187,10 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		boost::to_upper(first_airway);
 	}
 
-
-	if (first_airway.empty() || first_pt.empty()) {
-		returnValid["SEARCH"] = "Could not determine routing to check!";
+	// If the route contains only one waypoint, it's probably a route that goes within the EHAA FIR.
+	// Therefore the SID is probably OK to verify.
+	if (route.size() != 1 && (first_airway.empty() || first_pt.empty())) {
+		returnValid["SEARCH"] = "Could not determine routing to check!\nDEBUG LOG! >> First Airway: " + first_airway + ", First Pt: " + first_pt + ", ROUTE LEN: " + std::to_string(route.size());
 		returnValid["STATUS"] = "Failed";
 		return returnValid;
 	}
