@@ -11,6 +11,7 @@
 #include <boost/format.hpp>
 #include "rapidjson/document.h"
 #include "rapidjson/stringbuffer.h"
+#include <regex>
 
 #define MY_PLUGIN_NAME      "VFPC"
 #define MY_PLUGIN_VERSION   "3.0.0"
