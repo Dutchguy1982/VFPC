@@ -279,7 +279,14 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 			passed[1] = true;
 		}
 
-		if (first_airway == "DCT") {
+		// Regex for an airway according to ICAO Annex 11 Appendix 1 (https://ffac.ch/wp-content/uploads/2020/10/ICAO-Annex-11-Air-Traffic-Services.pdf)
+		// Also see https://aviation.stackexchange.com/a/59784
+		std::regex reg(R"([A-Z]{1,2}\d{1,3})");
+
+		bool found_airway{
+		std::regex_match(first_airway, reg) };
+
+		if (first_airway == "DCT" || !found_airway) {
 			returnValid["SID_DCT"] = "Failed: Flightplan contains a DCT after the SID!";
 		}
 		else {
@@ -290,6 +297,7 @@ map<string, string> CVFPCPlugin::validizeSid(CFlightPlan flightPlan) {
 		returnValid["DEBUG_AIRWAY_CHK"] = first_airway;
 		returnValid["DEBUG_AIRWAY_CHK2"] = first_wp;
 		returnValid["DEBUG_AIRWAY_CHK3"] = first_pt;
+		returnValid["DEBUG_AIRWAY_CHK4"] = std::to_string(found_airway);
 		//returnValid["AIRWAY_CHK3"] = route[0];
 
 		// Is Engine Type if it's limited (P=piston, T=turboprop, J=jet, E=electric)
@@ -594,7 +602,11 @@ void CVFPCPlugin::checkFPDetail() {
 	}
 
 	sendMessage(messageBuffer["CS"], buffer);
-	debugMessage(messageBuffer["CS"], ("First point (or airway) after the SID: " + messageBuffer["DEBUG_AIRWAY_CHK"] + ", First waypoint (can differ from first fix): " + messageBuffer["DEBUG_AIRWAY_CHK2"] + ", First fix: " + messageBuffer["DEBUG_AIRWAY_CHK3"]));
+	debugMessage(messageBuffer["CS"], 
+		("First point (or airway) after the SID: " + messageBuffer["DEBUG_AIRWAY_CHK"] + 
+		", First waypoint (can differ from first fix): " + messageBuffer["DEBUG_AIRWAY_CHK2"] + ", First fix: " + 
+		messageBuffer["DEBUG_AIRWAY_CHK3"] + ". Result Regex: " + messageBuffer["DEBUG_AIRWAY_CHK4"])
+	);
 
 }
 
